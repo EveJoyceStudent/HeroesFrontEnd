@@ -1,0 +1,14 @@
+<!-- <p *ngIf="this.selectedHero">Selected Hero: {{this.selectedHero.name}}</p> -->
+
+<div class="heroContainer">
+  <div
+    *ngFor="let hero of heroList"
+    class="hero"
+    [class.selected]="selectedCheck(hero)"
+    (click)="heroClick(hero)"
+  >
+    <p>Hero {{ hero.name }}</p>
+    <p>Dice: {{ hero.diceMin }} - {{ hero.diceMax }}</p>
+    <p>Remaining: {{ hero.usesLeft }}</p>
+  </div>
+</div>

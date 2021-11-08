@@ -1,0 +1,7 @@
+<div class="villlainContainer">
+  <div class="villain" *ngFor="let villain of villainList" [class.selected]="selectedCheck(villain)" (click)="villainClick(villain)" >
+    <p>Villain {{ villain.name }}</p>
+    <p>Health: {{ villain.health }}</p>
+  </div>
+</div>
+<!-- <p *ngIf="this.selectedVillain">Selected Villain: {{this.selectedVillain.name}}</p> -->

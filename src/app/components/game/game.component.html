@@ -1,0 +1,34 @@
+<div>
+  <button (click)="startGame()">Start</button>
+</div>
+<div *ngIf="this.gameStarted">
+  <heroes 
+    (createEvent)="heroClick($event)"
+    (loseEvent)="lose()"
+    [selectedHero]="selectedHero"
+    [gameStartEvent]="gameStartButtonPressed.asObservable()"
+    [checkEndConditionHeroes]="checkLoseCondition.asObservable()"
+  ></heroes>
+  <villains
+    (createEvent)="VillainClick($event)"
+    [selectedVillain]="selectedVillain"
+    (winEvent)="win()"
+    [events]="gameStartButtonPressed.asObservable()"
+    [checkEndConditionVillains]="checkWinCondition.asObservable()"
+  ></villains>
+  <p>
+    Selected Hero:
+    <span *ngIf="this.selectedHero">{{ this.selectedHero.name }}</span>
+  </p>
+  <p>
+    Selected Villain:
+    <span *ngIf="this.selectedVillain">{{ this.selectedVillain.name }}</span>
+  </p>
+  <button (click)="Attack()" [disabled]="!(this.selectedHero&&this.selectedVillain)">Attack</button>
+  <div *ngIf="this.attackHero">
+    Hero <span>{{ this.attackHero.name }}</span> attacked Villain
+    <span>{{ this.attackVillain.name }}</span> for
+    <span>{{ this.attackDamage }}</span> damage!
+  </div>
+</div>
+<app-results #resultsComponent [latestResult]="latestResult"></app-results>
